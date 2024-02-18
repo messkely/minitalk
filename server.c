@@ -6,39 +6,11 @@
 /*   By: messkely <messkely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:04:35 by messkely          #+#    #+#             */
-/*   Updated: 2024/02/17 20:52:57 by messkely         ###   ########.fr       */
+/*   Updated: 2024/02/18 20:59:45 by messkely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
-// void handle_signal(int signal)
-// {
-//  static unsigned char current_char;
-//  static int    bit_index;
-
-//  current_char |= (signal == SIGUSR1);
-//  bit_index++;
-//  if (bit_index == 8)
-//  {
-//   if (current_char == END_TRANSMISSION)
-//    printf("\n");
-//   else
-//    printf("%c", current_char);
-//   bit_index = 0;
-//   current_char = 0;
-//  }
-//  else
-//   current_char <<= 1;
-// }
-
-// int main()
-// {
-//     int id;
-
-//     id = (int)(getpid());
-//     printf("%d\n", id);
-// }
 
 void	ft_handler(int signal)
 {
@@ -46,7 +18,7 @@ void	ft_handler(int signal)
 	static int	i;
 
 	if (signal == SIGUSR1)
-		i |= (0x01 << bit);
+		i |= (1 << bit);
 	bit++;
 	if (bit == 8)
 	{
