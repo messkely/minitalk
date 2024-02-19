@@ -6,13 +6,13 @@
 /*   By: messkely <messkely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:03:45 by messkely          #+#    #+#             */
-/*   Updated: 2024/02/18 20:59:23 by messkely         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:45:18 by messkely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	ft_atoi(const char *str)
+static int		ft_atoi(const char *str)
 {
 	int		i;
 	int		sign;
@@ -41,7 +41,7 @@ int	ft_atoi(const char *str)
 	return (sign * res);
 }
 
-void	ft_send_bits(int pid, char i)
+void	ft_send_signal(int pid, char i)
 {
 	int	bit;
 
@@ -57,27 +57,27 @@ void	ft_send_bits(int pid, char i)
 	}
 }
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
 	int	pid;
 	int	i;
 
 	i = 0;
-	if (argc == 3)
+	if (ac == 3)
 	{
-		pid = ft_atoi(argv[1]);
-		while (argv[2][i] != '\0')
+		pid = ft_atoi(av[1]);
+		while (av[2][i] != '\0')
 		{
-			ft_send_bits(pid, argv[2][i]);
+			ft_send_signal(pid, av[2][i]);
 			i++;
 		}
-		ft_send_bits(pid, '\n');
+		ft_send_signal(pid, '\n');
 	}
 	else
 	{
-		printf("\033[91mError: wrong format.\033[0m\n");
-		printf("\033[33mTry: ./client <PID> <MESSAGE>\033[0m\n");
+		write(1, "Error: wrong format.\n", 22);
+		write(1, "Try: ./client <PID> <MESSAGE>\n", 31);
 		return (1);
 	}
 	return (0);
-}
+	}

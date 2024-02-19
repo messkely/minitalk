@@ -6,13 +6,24 @@
 /*   By: messkely <messkely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:04:35 by messkely          #+#    #+#             */
-/*   Updated: 2024/02/18 20:59:45 by messkely         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:58:40 by messkely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	ft_handler(int signal)
+static void	ft_putnbr(int n)
+{
+    if (n < 10)
+        write(1, &"0123456789"[n], 1);
+    else
+    {
+        ft_putnbr(n / 10);
+        write(1, &"0123456789"[n%10], 1);
+    }
+}
+
+void	ft_handle_signal(int signal)
 {
 	static int	bit;
 	static int	i;
@@ -22,7 +33,7 @@ void	ft_handler(int signal)
 	bit++;
 	if (bit == 8)
 	{
-		printf("%c", i);
+		write(1, &i, 1);
 		bit = 0;
 		i = 0;
 	}
@@ -35,18 +46,19 @@ int	main(int ac, char **av)
 	(void)av;
 	if (ac != 1)
 	{
-		printf("\033[91mError: wrong format.\033[0m\n");
-		printf("\033[33mTry: ./server\033[0m\n");
+		write(1, "Error: wrong format.\n", 22);
+		write(1, "Try: ./server\n", 15);
 		return (0);
 	}
 	pid = getpid();
-	printf("\033[94mPID\033[0m \033[96m->\033[0m %d\n", pid);
-	printf("\033[90mWaiting for a message...\033[0m\n");
+	write(1, "PID->", 6);
+	ft_putnbr(pid);
+	write(1, "\nWaiting for a message...\n", 26);
 	while (ac == 1)
 	{
-		signal(SIGUSR1, ft_handler);
-		signal(SIGUSR2, ft_handler);
+		signal(SIGUSR1, ft_handle_signal);
+		signal(SIGUSR2, ft_handle_signal);
 		pause ();
 	}
 	return (0);
-}
+	}
