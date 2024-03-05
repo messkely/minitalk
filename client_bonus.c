@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: messkely <messkely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 12:03:45 by messkely          #+#    #+#             */
-/*   Updated: 2024/03/05 15:34:26 by messkely         ###   ########.fr       */
+/*   Created: 2024/02/20 10:03:57 by messkely          #+#    #+#             */
+/*   Updated: 2024/03/05 15:40:33 by messkely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
+
+static void	ft_confirm(int signal)
+{
+	if (signal == SIGUSR1 || signal == SIGUSR2)
+		write(1, "confirm\n", 8);
+	else
+		write(1, "not confirm\n", 8);
+}
 
 void	ft_send_signal(int pid, char i)
 {
@@ -44,6 +52,8 @@ int	main(int ac, char **av)
 		pid = ft_atoi(av[1]);
 		while (av[2][i] != '\0')
 		{
+			signal(SIGUSR1, ft_confirm);
+			signal(SIGUSR2, ft_confirm);
 			ft_send_signal(pid, av[2][i]);
 			i++;
 		}
@@ -56,4 +66,4 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	return (0);
-}
+	}

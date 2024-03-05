@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: messkely <messkely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 12:04:30 by messkely          #+#    #+#             */
-/*   Updated: 2024/03/05 15:27:11 by messkely         ###   ########.fr       */
+/*   Created: 2024/02/20 12:09:12 by messkely          #+#    #+#             */
+/*   Updated: 2024/02/20 12:09:59 by messkely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "minitalk.h"
 
-# include <unistd.h>
-# include <signal.h>
-
-#ifndef TIME
-# define TIME 450
-#endif
-
-void	ft_send_signal(int pid, char i);
-void	ft_handle_signal(int signal);
-void	ft_putnbr(int n);
-int		ft_parcing(char *str);
-int		ft_atoi(const char *str);
-
-#endif
+void	ft_putnbr(int n)
+{
+    if (n < 10)
+        write(1, &"0123456789"[n], 1);
+    else
+    {
+        ft_putnbr(n / 10);
+        write(1, &"0123456789"[n%10], 1);
+    }
+}
