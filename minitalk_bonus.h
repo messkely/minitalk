@@ -6,7 +6,7 @@
 /*   By: messkely <messkely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:00:24 by messkely          #+#    #+#             */
-/*   Updated: 2024/03/05 15:29:02 by messkely         ###   ########.fr       */
+/*   Updated: 2024/03/06 09:44:21 by messkely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <unistd.h>
 # include <signal.h>
 
-#ifndef TIME
-# define TIME 450
-#endif
+# ifndef TIME
+#  define TIME 450
+# endif
 
 void	ft_send_signal(int pid, char i);
 void	ft_handle_signal(int signal, siginfo_t *info, void *s);

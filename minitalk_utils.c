@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   minitalk_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: messkely <messkely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:11:44 by messkely          #+#    #+#             */
-/*   Updated: 2024/02/20 12:13:08 by messkely         ###   ########.fr       */
+/*   Updated: 2024/03/06 09:23:51 by messkely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 int	ft_atoi(const char *str)
 {
@@ -39,4 +39,41 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (sign * res);
+}
+
+void	ft_putnbr(int n)
+{
+	if (n < 10)
+		write(1, &"0123456789"[n], 1);
+	else
+	{
+		ft_putnbr(n / 10);
+		write(1, &"0123456789"[n % 10], 1);
+	}
+}
+
+static int	ft_isspace(int c)
+{
+	return (c == ' ' || c == '\t' || c == '\n');
+}
+
+static int	ft_isalpha(int c)
+{
+	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+}
+
+int	ft_parcing(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isspace(str[i]) || ft_isalpha(str[i]))
+			return (0);
+		else if (str[i] == '+')
+			return (0);
+		i++;
+	}
+	return (1);
 }

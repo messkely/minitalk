@@ -6,7 +6,7 @@
 /*   By: messkely <messkely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 10:04:31 by messkely          #+#    #+#             */
-/*   Updated: 2024/02/29 12:02:33 by messkely         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:02:05 by messkely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	ft_handle_signal(int signal, siginfo_t *info, void *s)
 
 int	main(void)
 {
-	int	pid;
-	struct sigaction sig;
+	int					pid;
+	struct sigaction	sig;
 
 	pid = getpid();
 	write(1, "PID->", 6);

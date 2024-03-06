@@ -6,7 +6,7 @@
 /*   By: messkely <messkely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:04:35 by messkely          #+#    #+#             */
-/*   Updated: 2024/02/20 12:09:37 by messkely         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:54:22 by messkely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,6 @@ void	ft_handle_signal(int signal)
 	}
 }
 
-// int	main(void)
-// {
-// 	int	pid;
-// 	struct sigaction sig;
-	
-
-// 	pid = getpid();
-// 	write(1, "PID->", 6);
-// 	ft_putnbr(pid);
-// 	write(1, "\nWaiting for a message...\n", 26);
-// 	sig.sa_sigaction = ft_handle_signal;
-// 	while (1)
-// 	{
-// 		sigaction(SIGUSR1, &sig, NULL);
-// 		sigaction(SIGUSR2, &sig, NULL);
-// 		pause ();
-// 	}
-// 	return (0);
-// }
 int	main(void)
 {
 	int	pid;
