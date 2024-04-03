@@ -6,11 +6,11 @@
 /*   By: messkely <messkely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:11:44 by messkely          #+#    #+#             */
-/*   Updated: 2024/03/06 09:23:51 by messkely         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:45:20 by messkely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_bonus.h"
+#include "../includes/minitalk_bonus.h"
 
 int	ft_atoi(const char *str)
 {
@@ -52,7 +52,7 @@ void	ft_putnbr(int n)
 	}
 }
 
-static int	ft_isspace(int c)
+int	ft_isspace(int c)
 {
 	return (c == ' ' || c == '\t' || c == '\n');
 }
